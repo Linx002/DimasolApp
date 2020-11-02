@@ -12,7 +12,7 @@
 @endif
 <h1 class="dimasol-margin">Crear proyecto</h1>
 <div class="dimasol-quarter dimasol-padding-16"></div>
-<div class="dimasol-half dimasol-container dimasol-green dimasol-padding-16">
+<div class="dimasol-half dimasol-container dimasol-green form-group dimasol-padding-16">
     <form action="/projects/create" method="POST" enctype="multipart/form-data">
         @csrf
         <ul class="list-group list-group-flush">
@@ -35,18 +35,17 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                 <label for="startDate">Fecha de inicio: </label>
                 <input class="form-control" type="date" min="2020-09-01" name="startDate" id="startDate" required/>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                 <label for="endDate">Fecha de finalizacion: </label>
                 <input class="form-control" type="date" name="endDate" id="endDate" required/>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2 dimasol-center">
                 <label for="consumables">Requiere consumibles?: </label><br/>
-                    <input type="radio" name="consumables" id="consumables" value=true> Si
-                    <input type="radio" name="consumables" id="consumables" value=false> No
+                    <input type="checkbox" class="form-chech-input align-middle" name="consumables" id="consumables" value=true>
                 {{--  <select class="dimasol-select" name="consumables" id="consumables" required>
                 <option value=true>Si</option>
                 <option value=false>No</option>

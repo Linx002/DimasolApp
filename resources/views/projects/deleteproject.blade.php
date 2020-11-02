@@ -39,30 +39,23 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                 <label for="startDate">Fecha de inicio: </label>
                 <input class="form-control" type="date" min="2020-09-01" name="startDate" id="startDate" value="{{ $projects->startDate }}" readonly/>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                 <label for="endDate">Fecha de finalizacion: </label>
                 <input class="form-control" type="date" name="endDate" id="endDate" value="{{ $projects->endDate }}" readonly/>
                 </div>
-                <div class="col-md-4">
-                <label for="consumables">Requiere consumibles?: </label><br/>
-                    <input type="radio" name="consumables" id="consumables"
-                    @php
-                        if($projects->consumables == "1"){
-                            echo "checked";
-                        }
-                    @endphp
-                    value=true> Si
-                    <input type="radio" name="consumables" id="consumables"
-                    @php
-                        if($projects->consumables == "0"){
-                            echo "checked";
-                        }
-                    @endphp value=false> No
-                </div>
+                <div class="col-md-2">
+                    <label for="consumables">Requiere consumibles?: </label><br/>
+                        <input type="checkbox" name="consumables" id="consumables"
+                        @php
+                            if($projects->consumables == "1"){
+                                echo "checked";
+                            }
+                        @endphp
+                        value=true disabled>
             </div>
         </ul>
     <div class="dimasol-padding-16">
