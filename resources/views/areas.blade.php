@@ -55,13 +55,13 @@
         <div class="dimasol-quarter end">
             <h4> {{ $album ->albumName }}</h4>
             <a href="/album/{{ $album->id }}">
-                <img src="/storage/album_covers/{{ $album->coverPhoto }}" height="200px" alt="{{ $album->albumName }}">
+                <img src="/storage/album_covers/{{ $album->coverPhoto }}" class="img-thumbnail" alt="{{ $album->albumName }}">
             </a>
         @else
         <div class="dimasol-quarter">
             <h4> {{ $album ->albumName }}</h4>
             <a href="/album/{{ $album->id }}">
-                <img src="/storage/album_covers/{{ $album->coverPhoto }}" height="200px" alt="{{ $album->albumName }}">
+                <img src="/storage/album_covers/{{ $album->coverPhoto }}" class="img-thumbnail" alt="{{ $album->albumName }}">
             </a>
             <br>
         @endif

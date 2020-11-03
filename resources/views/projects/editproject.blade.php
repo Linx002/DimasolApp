@@ -49,6 +49,7 @@
     <div class="dimasol-padding-16">
         <button type="submit" class="dimasol-button button-radius btn-info btn">Editar proyecto</button>
         <button type="reset" class="dimasol-button button-radius btn-warning btn">Reset</button>
+        <a href="/projects" class="btn button-radius btn-primary">Regresar a administrar</a>
     </div>
 </div>
 </form>

@@ -11,12 +11,18 @@
     <ul class="list-group list-group-flush">
         <label for="entryTypes">Tipo de actividad: </label>
         <select class="form-control" name="entryType">
-            <option class="value" name="entryType" id="entryType" value="CompraMat"> Compra de Material </option>
-            <option class="value" name="entryType" id="entryType" value="Protos"> Presentacion de prototipos </option>
-            <option class="value" name="entryType" id="entryType" value="Avance25"> 25% de Avance </option>
-            <option class="value" name="entryType" id="entryType" value="Avance50"> 50% de Avance </option>
-            <option class="value" name="entryType" id="entryType" value="Avance75"> 75% de Avance </option>
-            <option class="value" name="entryType" id="entryType" value="Final"> Entrega de proyecto </option>
+
+        <option class="value" name="entryType"
+        @if ($entries->entryType == "CompraMat")
+disabled
+        @endif
+        id="entryType" value="CompraMat"> Compra de Material </option>
+        <option class="value" name="entryType" id="entryType" value="Protos"> Presentacion de prototipos </option>
+        <option class="value" name="entryType" id="entryType" value="Avance25"> 25% de Avance </option>
+        <option class="value" name="entryType" id="entryType" value="Avance50"> 50% de Avance </option>
+        <option class="value" name="entryType" id="entryType" value="Avance75"> 75% de Avance </option>
+        <option class="value" name="entryType" id="entryType" value="Final"> Entrega de proyecto </option>
+
         </select>
         <label for="entryDescription">Descripcion: </label>
         <textarea name="entryDescription" id="entryDescription" cols="25" rows="10" class="form-control"></textarea>

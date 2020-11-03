@@ -15,10 +15,12 @@ class DataEntries extends Migration
     {
         Schema::create('dataEntries', function (Blueprint $table) {
             $table->id();
-            $table->integer('projectId');
+            $table->integer('projects_Id');
             $table->string('entrytype');
             $table->text('entryDescription');
             $table->binary('entryFile');
+            $table->date('entryStartDate');
+            $table->date('entryEndDate');
             $table->timestamps();
         });
     }

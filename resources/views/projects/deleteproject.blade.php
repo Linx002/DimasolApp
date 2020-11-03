@@ -60,6 +60,7 @@
         </ul>
     <div class="dimasol-padding-16">
         <button type="submit" class="dimasol-button button-radius btn-danger btn">Eliminar proyecto</button>
+        <a href="/projects" class="btn button-radius btn-primary">Regresar a Indice</a>
     </div>
 </div>
 </form>

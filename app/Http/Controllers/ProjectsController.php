@@ -13,6 +13,7 @@ class ProjectsController extends Controller
 {
     public function Index(){
         $projects = DB::table('projects')->get();
+        $projects = DB::table('projects')->Paginate(5);
         return view('projects.indexprojects', ['projects' => $projects]);
     }
 
@@ -39,7 +40,7 @@ class ProjectsController extends Controller
     public function Details($id){
         $projects = DB::table('projects')->find($id);
         $projects = Projects::with('dataEntries')->find($id);
-        return view ('projects.projectDetails')->with('projects',$projects);
+        return view ('projects.projectdetails')->with('projects',$projects);
     }
 
     public function Edit($id){
@@ -86,7 +87,9 @@ class ProjectsController extends Controller
 
     public function createEntry($id){
         $projects = DB::table('projects')->find($id);
-        return view ('dataEntry.createEntry', ['projects' => $projects]);
+        $projects = Projects::with('dataEntries')->find($id);
+        $entries = $projects->dataentries;
+        return view ('dataEntry.createEntry', ['projects' => $projects, 'entries'=>$entries]);
     }
 
     public function storeDataEntry(Request $request){

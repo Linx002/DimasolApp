@@ -55,6 +55,9 @@
         @endforeach
     </tbody>
 </table>
+<div class="row justify-content-center">
+{{ $projects->links() }}
+</div>
 @else
 <h1>
     Necesita iniciar sesión para ver este contenido.
