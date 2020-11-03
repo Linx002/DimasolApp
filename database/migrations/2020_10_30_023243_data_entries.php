@@ -21,6 +21,7 @@ class DataEntries extends Migration
             $table->binary('entryFile');
             $table->date('entryStartDate');
             $table->date('entryEndDate');
+            $table->string('sortPos');
             $table->timestamps();
         });
     }

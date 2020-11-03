@@ -6,8 +6,6 @@ use App\Projects;
 use App\DataEntries;
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB as FacadesDB;
-use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -103,6 +101,26 @@ class ProjectsController extends Controller
         $finalFileName = "No file uploaded";
     }
 
+    $sortPos = $request->input('entryType');
+    if($sortPos == "CompraMat"){
+        $sortVar = "0";
+    }
+    else if($sortPos == "Protos"){
+        $sortVar = "1";
+    }
+    else if($sortPos == "Avance25"){
+        $sortVar = "2";
+    }
+    else if($sortPos == "Avance50"){
+        $sortVar = "3";
+    }
+    else if($sortrPos == "Avance75"){
+        $sortVar = "4";
+    }
+    else if($sortPos == "Final"){
+        $sortVar = "5";
+    }
+
     $dataEntry = New DataEntries;
 
     $dataEntry -> projects_Id= $request->input('id');
@@ -111,6 +129,7 @@ class ProjectsController extends Controller
     $dataEntry -> entryFile = $finalFileName;
     $dataEntry -> entryStartDate = $request->input('entryStartDate');
     $dataEntry -> entryEndDate = $request->input('entryEndDate');
+    $dataEntry -> sortPos = $sortVar;
 
     $dataEntry->save();
     return redirect('/projects')->with('msg', 'Actividad agregada correctamente');

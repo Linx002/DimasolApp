@@ -17,7 +17,6 @@
         <option class="value" name="entryType" id="entryType" value="Avance50"> 50% de Avance </option>
         <option class="value" name="entryType" id="entryType" value="Avance75"> 75% de Avance </option>
         <option class="value" name="entryType" id="entryType" value="Final"> Entrega de proyecto </option>
-
         </select>
         <label for="entryDescription">Descripcion: </label>
         <textarea name="entryDescription" id="entryDescription" cols="25" rows="10" class="form-control"></textarea>
