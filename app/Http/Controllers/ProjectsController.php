@@ -88,8 +88,7 @@ class ProjectsController extends Controller
     public function createEntry($id){
         $projects = DB::table('projects')->find($id);
         $projects = Projects::with('dataEntries')->find($id);
-        $entries = $projects->dataentries;
-        return view ('dataEntry.createEntry', ['projects' => $projects, 'entries'=>$entries]);
+        return view ('dataEntry.createEntry', ['projects' => $projects]);
     }
 
     public function storeDataEntry(Request $request){
