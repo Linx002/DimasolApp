@@ -114,7 +114,7 @@ class ProjectsController extends Controller
     else if($sortPos == "Avance50"){
         $sortVar = "3";
     }
-    else if($sortrPos == "Avance75"){
+    else if($sortPos == "Avance75"){
         $sortVar = "4";
     }
     else if($sortPos == "Final"){
