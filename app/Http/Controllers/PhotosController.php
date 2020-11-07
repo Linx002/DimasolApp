@@ -11,7 +11,7 @@ class PhotosController extends Controller
     public function Add($album_id){
         return view('albums.addPhotos')->with('album_id',$album_id);
     }
-    
+
     public function Store(Request $request){
         //tomar nombre del archivo con extension
         $fileNameWithExt = $request->file('Photo')->getClientOriginalName();

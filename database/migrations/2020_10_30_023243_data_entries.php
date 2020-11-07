@@ -13,12 +13,12 @@ class DataEntries extends Migration
      */
     public function up()
     {
-        Schema::create('dataEntries', function (Blueprint $table) {
+        Schema::create('data_entries', function (Blueprint $table) {
             $table->id();
             $table->integer('projects_Id');
             $table->string('entrytype');
             $table->text('entryDescription');
-            $table->binary('entryFile');
+            $table->string('entryFile');
             $table->date('entryStartDate');
             $table->date('entryEndDate');
             $table->string('sortPos');
@@ -33,6 +33,6 @@ class DataEntries extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dataEntries');
+        Schema::dropIfExists('data_entries');
     }
 }

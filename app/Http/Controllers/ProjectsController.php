@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Projects;
 use App\DataEntries;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,11 @@ class ProjectsController extends Controller
         $projects = DB::table('projects')->Paginate(5);
         return view('projects.indexprojects', ['projects' => $projects]);
     }
-
+//Create project - ver form
     public function Create(){
         return view ('projects.createprojects');
     }
-
+//Create project - guardar form
     public function Store(Request $request){
             $project = New projects;
 
@@ -34,18 +35,18 @@ class ProjectsController extends Controller
             $project->save();
         return redirect('/projects')->with('msg', 'Proyecto agregado correctamente');
     }
-
+//Read project - ver form
     public function Details($id){
         $projects = DB::table('projects')->find($id);
         $projects = Projects::with('dataEntries')->find($id);
         return view ('projects.projectdetails')->with('projects',$projects);
     }
-
+//Edit project - ver form
     public function Edit($id){
         $projects = DB::table('projects')->find($id);
         return view('projects.editproject', ['projects' => $projects]);
     }
-
+//Edit project - guardar form
     public function Update(Request $request){
         $id = $request->input('id');
         $projectName= $request->input('projectName');
@@ -70,25 +71,25 @@ class ProjectsController extends Controller
         }
     return redirect('/projects')->with('msg', 'Proyecto editado correctamente');
     }
-
+//Delete project - mostrar form
     public function Delete($id){
         $projects = DB::table('projects')->find($id);
         return view('projects.deleteproject', ['projects' => $projects]);
     }
-
+//Delete project - eliminar form
     public function Remove(Request $request){
         $id = $request->input('id');
         if(DB::table('projects')->where('id', $id)->exists() == true){
             DB::table('projects')->where('id',$id)->delete();}
         return redirect('/projects')->with('msg', 'Proyecto eliminado correctamente');
     }
-
+//Create Entry - mostrar form
     public function createEntry($id){
         $projects = DB::table('projects')->find($id);
         $projects = Projects::with('dataEntries')->find($id);
         return view ('dataEntry.createEntry', ['projects' => $projects]);
     }
-
+//Create Entry - guardar form
     public function storeDataEntry(Request $request){
     if($request->hasFile('entryFile')){
     $fileNameWithExt = $request->file('entryFile')->getClientOriginalName();
@@ -96,9 +97,12 @@ class ProjectsController extends Controller
     $extension = $request->file('entryFile')->getClientOriginalExtension();
     $finalFileName = $fileName.'_'.time().'.'.$extension;
 
+    $path = $request->file('entryFile')->storeAs('public/entriesData/'
+                                                  .$request->input('id').'/'
+                                                  .$request->input('entryType'),$finalFileName);
     }
-    if(!$request->hasFile('entryFile')){
-        $finalFileName = "No file uploaded";
+    else{
+        $finalFileName = "No_file_uploaded";
     }
 
     $sortPos = $request->input('entryType');
@@ -132,14 +136,14 @@ class ProjectsController extends Controller
     $dataEntry -> sortPos = $sortVar;
 
     $dataEntry->save();
-    return redirect('/projects')->with('msg', 'Actividad agregada correctamente');
+    return redirect('/projects/'.$request->input('id'))->with('msg', 'Actividad agregada correctamente');
     }
-
+//Edit Entry - ver form
     public function editEntry($id){
         $entry = DB::table('data_entries')->find($id);
         return view ('dataEntry.editEntry', ['entry' => $entry]);
     }
-
+//Edit Entry - guardar form
     public function updateEntry(Request $request){
     if($request->hasFile('entryFile')){
     $fileNameWithExt = $request->file('entryFile')->getClientOriginalName();
@@ -147,18 +151,42 @@ class ProjectsController extends Controller
     $extension = $request->file('entryFile')->getClientOriginalExtension();
     $finalFileName = $fileName.'_'.time().'.'.$extension;
 
+    $path = $request->file('entryFile')->storeAs('public/entriesData/'
+                                                  .$request->input('projects_id').'/'
+                                                  .$request->input('entryType'),$finalFileName);
     }
-    if(!$request->hasFile('entryFile')){
-        $finalFileName = "No file uploaded";
+    else{
+        $finalFileName = "No_file_uploaded";
     }
 
-    $id = $request->input('id');
-    $projects_Id= $request->input('id');
+    $sortPos = $request->input('entryType');
+    if($sortPos == "CompraMat"){
+        $sortVar = "0";
+    }
+    else if($sortPos == "Protos"){
+        $sortVar = "1";
+    }
+    else if($sortPos == "Avance25"){
+        $sortVar = "2";
+    }
+    else if($sortPos == "Avance50"){
+        $sortVar = "3";
+    }
+    else if($sortPos == "Avance75"){
+        $sortVar = "4";
+    }
+    else if($sortPos == "Final"){
+        $sortVar = "5";
+    }
+
+    $id= $request->input('id');
+    $projects_Id= $request->input('projects_id');
     $entryType = $request->input('entryType');
     $entryDescription = $request->input('entryDescription');
     $entryFile=$finalFileName;
     $entryStartDate = $request->input('entryStartDate');
     $entryEndDate = $request->input('entryEndDate');
+    $sortPos = $sortVar;
 
     if(DB::table('data_entries')->where('id', $id)->exists() == true){
         DB::table('data_entries')->where('id',$id)->update([
@@ -168,16 +196,17 @@ class ProjectsController extends Controller
         'entryFile'=>$entryFile,
         'entryStartDate'=>$entryStartDate,
         'entryEndDate'=>$entryEndDate,
+        'sortPos' => $sortVar
         ]);
     }
-    return redirect('/projects')->with('msg', 'Actividad agregada correctamente');
+    return redirect('/projects/'.$request->input('id'))->with('msg', 'Actividad editada correctamente');
     }
-
+//Delete Entry - ver form
     public function deleteEntry($id){
         $entry = DB::table('data_entries')->find($id);
         return view ('dataEntry.deleteEntry', ['entry' => $entry]);
     }
-
+//Delete Entry - eliminar form
     public function removeEntry(Request $request){
         $id = $request->input('id');
         if(DB::table('data_entries')->where('id', $id)->exists() == true){

@@ -27,6 +27,7 @@
     @foreach ($projects as $project)
     @php
     $dateToCompare = $project->endDate;
+    $InitDate = $project->startDate;
     $today = date('Y-m-d');
     if ($dateToCompare<$today){
         $status="Projecto terminado";
@@ -36,6 +37,9 @@
     }
     else{
         $status="Projecto en producción";
+    }
+    if ($InitDate>$today){
+        $status="Projecto por desarrollar";
     }
     @endphp
     <tbody>

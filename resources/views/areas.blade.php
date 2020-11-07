@@ -1,6 +1,7 @@
 @extends('layouts.layoutdimasol(blue)')
 @section('content')
     <h1>Areas de trabajo</h1>
+
     @if (session('msg'))
     <div class="dimasol-panel dimasol-blue dimasol-display-container">
         <span onclick="this.parentElement.style.display='none'" class="dimasol-button dimasol-large dimasol-display-topright">&times;</span>
@@ -8,6 +9,7 @@
         <p class="msg">{{ session('msg') }}</p>
     </div>
     @endif
+
     <p>Estas son lás diferentes áreas de trabajo con las que contamos para su servicio.
         <br>
         La industria DIMASOL cuenta con los equipos requeridos para cierta áreas del establecimiento con el fin de mantener seguro a nuestro personal en las jornadas de trabajo dependiendo del área en que se encuentren.
@@ -37,10 +39,9 @@
     </div>
     @if (Route::has('login'))
 @auth
-<div id="albums" class="dimasol-container dimasol-padding dimasol-light-grey">
+<div id="albums" class="dimasol-container dimasol-padding dimasol-light-green">
     <a href="/album/admin" class="button-radius dimasol-blue dimasol-hover-white dimasol-button">Administrar albums</a>
     <h2> Trabajos realizados</h2>
-    @else
     @endif
     @endauth
     @if (count($albums) > 0 )
@@ -55,18 +56,20 @@
         <div class="dimasol-quarter end">
             <h4> {{ $album ->albumName }}</h4>
             <a href="/album/{{ $album->id }}">
-                <img src="/storage/album_covers/{{ $album->coverPhoto }}" class="img-thumbnail" alt="{{ $album->albumName }}">
+                <img src="/storage/public/album_covers/{{ $album->coverPhoto }}" class="img-thumbnail" alt="{{ $album->albumName }}">
             </a>
-        @else
-        <div class="dimasol-quarter">
-            <h4> {{ $album ->albumName }}</h4>
-            <a href="/album/{{ $album->id }}">
-                <img src="/storage/album_covers/{{ $album->coverPhoto }}" class="img-thumbnail" alt="{{ $album->albumName }}">
-            </a>
-            <br>
-        @endif
-        @if($i % 3 == 0)
-        </div></div><div class="dimasol-row dimasol-center dimasol-centered">
+            @else
+            <div class="dimasol-quarter">
+                <h4> {{ $album ->albumName }}</h4>
+                <a href="/album/{{ $album->id }}">
+                    <img src="/storage/public/album_covers/{{ $album->coverPhoto }}" class="img-thumbnail" alt="{{ $album->albumName }}">
+                </a>
+                <br>
+            @endif
+            @if($i % 3 == 0)
+            </div>
+        </div>
+        <div class="dimasol-row dimasol-center dimasol-centered">
             @else
             </div>
         @endif
@@ -133,6 +136,6 @@
             setTimeout(carousel, 2000); // Change image every 2 seconds
         }
     </script> -->
-
+<hr>
     @include('layouts.lowerbar')
 @endsection

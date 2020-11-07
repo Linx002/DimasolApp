@@ -2,14 +2,6 @@
 @section('content')
 @if (Route::has('login'))
 @auth
-
-@if (session('msg'))
-<div class="dimasol-panel dimasol-blue dimasol-display-container">
-    <span onclick="this.parentElement.style.display='none'" class="dimasol-button dimasol-large dimasol-display-topright">&times;</span>
-<h3> Información! </h3>
-    <p class="msg">{{ session('msg') }}</p>
-</div>
-@endif
 <h1 class="dimasol-margin">Crear proyecto</h1>
 <div class="dimasol-quarter dimasol-padding-16"></div>
 <div class="dimasol-half dimasol-container dimasol-green form-group dimasol-padding-16">

@@ -19,17 +19,17 @@
         <option class="value" name="entryType" id="entryType" value="Final"> Entrega de proyecto </option>
         </select>
         <label for="entryDescription">Descripcion: </label>
-        <textarea name="entryDescription" id="entryDescription" cols="25" rows="10" class="form-control"></textarea>
+        <textarea name="entryDescription" id="entryDescription" cols="25" rows="10" required class="form-control"></textarea>
         <label for="entryFile">Archivo: </label>
         <input class="form-control" type="file" name="entryFile" id="entryFile"/>
         <div class="form-row">
             <div class="col-md-6">
             <label for="entryStartDate">Fecha de inicio de actividad: </label>
-            <input class="form-control" type="date" min="{{ $projects->startDate }}"  max="{{ $projects->endDate }}" name="entryStartDate" id="entryStartDate" required/>
+            <input class="form-control" type="date" min="{{ $projects->startDate }}" max="{{ $projects->endDate }}" name="entryStartDate" id="entryStartDate" required/>
             </div>
             <div class="col-md-6">
             <label for="entryEndDate">Fecha de finalizacion de actividad: </label>
-            <input class="form-control" type="date" min="{{ $projects->startDate }}"  max="{{ $projects->endDate }}" name="entryEndDate" id="entryEndDate" required/>
+            <input class="form-control" type="date" min="{{ $projects->startDate }}" max="{{ $projects->endDate }}" name="entryEndDate" id="entryEndDate" required/>
             </div>
         </div>
         <div class="dimasol-padding-16">

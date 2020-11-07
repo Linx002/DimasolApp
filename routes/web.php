@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

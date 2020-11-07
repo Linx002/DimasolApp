@@ -19,20 +19,20 @@
         @if ($i == $colCount)
         <div class="dimasol-quarter end">
             <h4> {{ $photo->photoTitle }}</h4>
-                <img src="/storage/photos/{{ $photo->album_id }}/{{ $photo->photo }}" width="200px" alt="{{ $photo->photoTitle }}" onclick="document.getElementById('{{ $i }}').style.display='block'" class="dimasol-hover-opacity img-circle">
+                <img src="/storage/app/public/photos/{{ $photo->album_id }}/{{ $photo->photo }}" width="200px" alt="{{ $photo->photoTitle }}" onclick="document.getElementById('{{ $i }}').style.display='block'" class="dimasol-hover-opacity img-circle">
                 <span onclick="this.parentElement.style.display='none'" class="dimasol-button dimasol-large dimasol-display-topright">&times;</span>
                 <div id="{{ $i }}" class="dimasol-modal dimasol-animate-zoom" onclick="this.style.display='none'">
-                    <img class="dimasol-modal-content" src="/storage/photos/{{ $photo->album_id }}/{{ $photo->photo }}">
+                    <img class="dimasol-modal-content" src="/storage/app/public/photos/{{ $photo->album_id }}/{{ $photo->photo }}">
                 </div>
 
         @else
         <div class="dimasol-quarter">
             <div class="dimasol-container">
             <h4> {{ $photo->photoTitle }}</h4>
-                <img src="/storage/photos/{{ $photo->album_id }}/{{ $photo->photo }}" width="200px" alt="{{ $photo->photoTitle }}" onclick="document.getElementById('{{ $i }}').style.display='block'" class="dimasol-hover-opacity img-circle">
+                <img src="/storage/app/public/photos/{{ $photo->album_id }}/{{ $photo->photo }}" width="200px" alt="{{ $photo->photoTitle }}" onclick="document.getElementById('{{ $i }}').style.display='block'" class="dimasol-hover-opacity img-circle">
                 <span onclick="this.parentElement.style.display='none'" class="dimasol-button dimasol-large dimasol-display-topright">&times;</span>
                 <div id="{{ $i }}" class="dimasol-modal dimasol-animate-zoom" onclick="this.style.display='none'">
-                    <img class="dimasol-modal-content" src="/storage/photos/{{ $photo->album_id }}/{{ $photo->photo }}">
+                    <img class="dimasol-modal-content" src="/storage/app/public/photos/{{ $photo->album_id }}/{{ $photo->photo }}">
                 </div>
             </div>
                 <br>

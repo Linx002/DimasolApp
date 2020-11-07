@@ -28,7 +28,7 @@
     <li>Exceder las expectativas que el cliente tiene sobre el servicio solicitado.</li>
     </div>
 </div>
-<br>
+<hr>
     @include('layouts.lowerbar')
 @endsection
 
