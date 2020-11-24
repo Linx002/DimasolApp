@@ -2,19 +2,17 @@
 @section('content')
 @if (session('msg'))
 <div class="dimasol-panel dimasol-blue dimasol-display-container">
-    <span onclick="this.parentElement.style.display='none'" class="dimasol-button dimasol-large dimasol-display-topright">&times;</span>
+    <span onclick="this.parentElement.style.display='none'"
+    class="dimasol-button dimasol-large dimasol-display-topright">&times;</span>
 <h3> Información! </h3>
     <p class="msg">{{ session('msg') }}</p>
 </div>
 @endif
-@if (Route::has('login'))
-@auth
 <div class="dimasol-row-padding dimasol-padding-32 dimasol-container">
     <h1 class="dimasol-margin">Detalles del Proyecto</h1>
     <div class="dimasol-container dimasol-half">
         {{-- Mitad izq --}}
         <ul class="list-group list-group-flush">
-
             <li class="list-group-item"><h5>Nombre del projecto: </h5>{{$projects->projectName}}</li>
             <li class="list-group-item"><h5>Descripcion: </h5>{{$projects->projectDescription}}</li>
             <li class="list-group-item"><h5>Compañia: </h5>{{$projects->company}}</li>
@@ -26,9 +24,13 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/projects/">Regreso al catálogo</a></li>
+                @if (Route::has('login'))
+                @auth
                 <li class="breadcrumb-item"><a href="/projects/edit/{{$projects->id}}">Editar</a></li>
                 <li class="breadcrumb-item"><a href="/projects/delete/{{$projects->id}}">Borrar</a></li>
                 <li class="breadcrumb-item"><a href="/dataentry/create/{{ $projects->id }}">Agregar actividades</a> </li>
+                @endauth
+                @endif
             </ol> </nav>
     </div>
     <div class="dimasol-container dimasol-half">
@@ -45,10 +47,14 @@
                 <small>Entre las fechas {{ $entries->entryStartDate }}<===>{{ $entries->entryEndDate }}</small>
             </div><p>{{ $entries->entryDescription }}</p>
             <div class="row">
+                @if (Route::has('login'))
+                @auth
                 <div class="col-6">
                     <a class="badge badge-danger badge-pill" href="/dataentry/deleteentry/{{ $entries->id }}">Borrar</a>
                     <a class="badge badge-warning badge-pill" href="/dataentry/editentry/{{ $entries->id }}">Editar</a>
                 </div>
+                @endauth
+                @endif
                 <div class="col-6 justify-content-end">
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
@@ -66,10 +72,14 @@
                 <small>Entre las fechas {{ $entries->entryStartDate }}<===>{{ $entries->entryEndDate }}</small>
             </div><p>{{ $entries->entryDescription }}</p>
             <div class="row">
+                @if (Route::has('login'))
+                @auth
                 <div class="col-6">
                     <a class="badge badge-danger badge-pill" href="/dataentry/deleteentry/{{ $entries->id }}">Borrar</a>
                     <a class="badge badge-warning badge-pill" href="/dataentry/editentry/{{ $entries->id }}">Editar</a>
                 </div>
+                @endauth
+                @endif
                 <div class="col-6 justify-content-end">
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
@@ -87,10 +97,14 @@
                 <small>Entre las fechas {{ $entries->entryStartDate }}<===>{{ $entries->entryEndDate }}</small>
             </div><p>{{ $entries->entryDescription }}</p>
             <div class="row">
+                @if (Route::has('login'))
+                @auth
                 <div class="col-6">
                     <a class="badge badge-danger badge-pill" href="/dataentry/deleteentry/{{ $entries->id }}">Borrar</a>
                     <a class="badge badge-warning badge-pill" href="/dataentry/editentry/{{ $entries->id }}">Editar</a>
                 </div>
+                @endauth
+                @endif
                 <div class="col-6 justify-content-end">
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
@@ -108,10 +122,14 @@
                 <small>Entre las fechas {{ $entries->entryStartDate }}<===>{{ $entries->entryEndDate }}</small>
             </div><p>{{ $entries->entryDescription }}</p>
             <div class="row">
+                @if (Route::has('login'))
+                @auth
                 <div class="col-6">
                     <a class="badge badge-danger badge-pill" href="/dataentry/deleteentry/{{ $entries->id }}">Borrar</a>
                     <a class="badge badge-warning badge-pill" href="/dataentry/editentry/{{ $entries->id }}">Editar</a>
                 </div>
+                @endauth
+                @endif
                 <div class="col-6 justify-content-end">
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
@@ -129,10 +147,14 @@
                 <small>Entre las fechas {{ $entries->entryStartDate }}<===>{{ $entries->entryEndDate }}</small>
             </div><p>{{ $entries->entryDescription }}</p>
             <div class="row">
+                @if (Route::has('login'))
+                @auth
                 <div class="col-6">
                     <a class="badge badge-danger badge-pill" href="/dataentry/deleteentry/{{ $entries->id }}">Borrar</a>
                     <a class="badge badge-warning badge-pill" href="/dataentry/editentry/{{ $entries->id }}">Editar</a>
                 </div>
+                @endauth
+                @endif
                 <div class="col-6 justify-content-end">
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
@@ -150,10 +172,14 @@
                 <small>Entre las fechas {{ $entries->entryStartDate }}<===>{{ $entries->entryEndDate }}</small>
             </div><p>{{ $entries->entryDescription }}</p>
             <div class="row">
+                @if (Route::has('login'))
+                @auth
                 <div class="col-6">
                     <a class="badge badge-danger badge-pill" href="/dataentry/deleteentry/{{ $entries->id }}">Borrar</a>
                     <a class="badge badge-warning badge-pill" href="/dataentry/editentry/{{ $entries->id }}">Editar</a>
                 </div>
+                @endauth
+                @endif
                 <div class="col-6 justify-content-end">
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
@@ -174,10 +200,4 @@
         <li class="list-group-item"><h5>Terminacion de proyecto: </h5>{{$projects->endDate}}</li>
     </div>
 </div>
-@else
-<h1>
-    Necesita iniciar sesión para ver este contenido.
-</h1>
-    @endauth
-    @endif
 @endsection

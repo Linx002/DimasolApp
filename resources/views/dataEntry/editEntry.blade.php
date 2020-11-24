@@ -8,7 +8,7 @@
 <form action="/dataentry/editentry" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" value={{ $entry->id }} id="id" name="id">
-    <input type="hidden" value={{ $entry->projects_Id }} id="projects_id" name="projects_id">
+    <input type="hidden" value={{ $entry->projects_Id }} id="projects_Id" name="projects_Id">
     <ul class="list-group list-group-flush">
         @php
             if($entry->entrytype == "CompraMat"){

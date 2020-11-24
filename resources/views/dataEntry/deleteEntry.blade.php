@@ -9,6 +9,7 @@
     @csrf
     @method('DELETE')
     <input type="hidden" value={{ $entry->id }} id="id" name="id">
+    <input type="hidden" value={{ $entry->projects_Id }} id="projects_Id" name="projects_Id">
     <ul class="list-group list-group-flush">
         @php
             if($entry->entrytype == "CompraMat"){
@@ -53,7 +54,7 @@
         <div class="form-row">
             <div class="col-md-4">
             <label for="entryStartDate">Fecha de inicio de actividad: </label>
-            <input class="form-control" type="date" name="entryStartDate" id="entryStartDate" value="{{ $entry  ->entryStartDate }}" readonly/>
+            <input class="form-control" type="date" name="entryStartDate" id="entryStartDate" value="{{ $entry->entryStartDate }}" readonly/>
             </div>
             <div class="col-md-4">
             <label for="entryEndDate">Fecha de finalizacion de actividad: </label>
@@ -63,7 +64,7 @@
         <div class="dimasol-padding-16">
             <button type="submit" class="dimasol-button button-radius btn-danger btn">Eliminar actividad</button>
             <button type="reset" class="dimasol-button button-radius btn-warning btn">Reset</button>
-            <a href="/projects/{{ $entry->projects_id }}" class="dimasol-button button-radius btn btn-info">Regresar a proyecto</a>
+            <a href="/projects/{{ $entry->projects_Id}}" class="dimasol-button button-radius btn btn-info">Regresar a proyecto</a>
         </div>
 </form>
 @else

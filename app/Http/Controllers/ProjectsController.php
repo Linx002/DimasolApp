@@ -180,7 +180,6 @@ class ProjectsController extends Controller
     }
 
     $id= $request->input('id');
-    $projects_Id= $request->input('projects_id');
     $entryType = $request->input('entryType');
     $entryDescription = $request->input('entryDescription');
     $entryFile=$finalFileName;
@@ -190,7 +189,6 @@ class ProjectsController extends Controller
 
     if(DB::table('data_entries')->where('id', $id)->exists() == true){
         DB::table('data_entries')->where('id',$id)->update([
-        'projects_Id' => $projects_Id,
         'entryDescription' =>$entryDescription,
         'entryType'=>$entryType,
         'entryFile'=>$entryFile,
@@ -199,7 +197,7 @@ class ProjectsController extends Controller
         'sortPos' => $sortVar
         ]);
     }
-    return redirect('/projects/'.$request->input('id'))->with('msg', 'Actividad editada correctamente');
+    return redirect('/projects/'.$request->input('projects_Id'))->with('msg', 'Actividad editada correctamente');
     }
 //Delete Entry - ver form
     public function deleteEntry($id){
@@ -211,7 +209,7 @@ class ProjectsController extends Controller
         $id = $request->input('id');
         if(DB::table('data_entries')->where('id', $id)->exists() == true){
             DB::table('data_entries')->where('id',$id)->delete();}
-        return redirect('/projects')->with('msg', 'Actividad eliminada correctamente');
+        return redirect('/projects/'.$request->input('projects_Id'))->with('msg', 'Actividad eliminada correctamente');
     }
 
 }
