@@ -29,18 +29,10 @@
     $dateToCompare = $project->endDate;
     $InitDate = $project->startDate;
     $today = date('Y-m-d');
-    if ($dateToCompare<$today){
-        $status="Projecto terminado";
-    }
-    else if($dateToCompare==$today){
-        $status="Projecto termina hoy";
-    }
-    else{
-        $status="Projecto en producción";
-    }
-    if ($InitDate>$today){
-        $status="Projecto por desarrollar";
-    }
+    if ($dateToCompare<$today){ $status="Projecto terminado";  }
+    else if($dateToCompare==$today){ $status="Projecto termina hoy"; }
+    else{ $status="Projecto en producción"; }
+    if ($InitDate>$today){ $status="Projecto por desarrollar"; }
     @endphp
     <tbody>
         <tr>

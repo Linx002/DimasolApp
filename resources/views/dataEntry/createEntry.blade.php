@@ -2,9 +2,18 @@
 @section('content')
 @if (Route::has('login'))
 @auth
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <h1 class="dimasol-margin">Agregar actividad al proyecto ({{ $projects->projectName }})</h1>
 <div class="dimasol-quarter dimasol-padding-16"></div>
-<div class="dimasol-half dimasol-container dimasol-amber dimasol-padding-16">
+<div class="dimasol-half dimasol-container dimasol-pale-green dimasol-padding-16">
 <form action="/dataentry/store" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="hidden" value={{ $projects->id }} id="id" name="id">

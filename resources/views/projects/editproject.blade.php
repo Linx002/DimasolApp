@@ -2,9 +2,18 @@
 @section('content')
 @if (Route::has('login'))
 @auth
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <h1 class="dimasol-margin">Editar proyecto</h1>
 <div class="dimasol-quarter dimasol-padding-16"></div>
-<div class="dimasol-half dimasol-container dimasol-light-blue dimasol-padding-16">
+<div class="dimasol-half dimasol-container dimasol-pale-yellow dimasol-padding-16">
     <form action="/projects/edit" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value={{ $projects->id }} id="id" name="id">
@@ -23,7 +32,7 @@
             </div>
             <div class="col-md-4">
             <label for="requisited">Requisitado por: </label>
-            <input class="form-control" type="text" name="requisitedBy" id="requisitedBy" value={{ $projects->requisitedBy }} required/>
+            <input class="form-control" type="text" name="requisitedBy" id="requisitedBy" value="{{ $projects->requisitedBy }}" required/>
             </div>
         </div>
         <div class="form-row">

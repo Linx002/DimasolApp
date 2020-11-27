@@ -2,6 +2,15 @@
 @section('content')
 @if (Route::has('login'))
 @auth
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <h1 class="dimasol-margin">Crear proyecto</h1>
 <div class="dimasol-quarter dimasol-padding-16"></div>
 <div class="dimasol-half dimasol-container dimasol-green form-group dimasol-padding-16">

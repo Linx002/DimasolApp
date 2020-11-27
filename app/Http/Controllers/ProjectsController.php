@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Projects;
 use App\DataEntries;
 use Illuminate\Support\Facades\Storage;
-use DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use DB;
 
 class ProjectsController extends Controller
 {
+//Index
     public function Index(){
         $projects = DB::table('projects')->get();
         $projects = DB::table('projects')->Paginate(5);
@@ -21,6 +23,22 @@ class ProjectsController extends Controller
     }
 //Create project - guardar form
     public function Store(Request $request){
+        $validator = Validator::make($request->all(), [
+            'projectName' => 'required|max:191',
+            'projectDescription' => 'required|max:191',
+            'company'=> 'required|max:191',
+            'area' => 'required|max:191',
+            'requisitedBy' => 'required|max:191',
+            'startDate' => 'date',
+            'endDate' => 'date',
+        ]);
+
+        if ($validator->fails()) {
+                    return redirect('projects/create')
+                                ->withErrors($validator)
+                                ->withInput();
+                }
+
             $project = New projects;
 
             $project -> projectName= $request->input('projectName');
@@ -48,6 +66,21 @@ class ProjectsController extends Controller
     }
 //Edit project - guardar form
     public function Update(Request $request){
+        $validator = Validator::make($request->all(), [
+            'projectName' => 'required|max:191',
+            'projectDescription' => 'required|max:191',
+            'company'=> 'required|max:191',
+            'area' => 'required|max:191',
+            'requisitedBy' => 'required|max:191',
+            'startDate' => 'date',
+            'endDate' => 'date',
+        ]);
+
+        if ($validator->fails()) {
+                    return redirect('projects/edit')
+                                ->withErrors($validator)
+                                ->withInput();
+                }
         $id = $request->input('id');
         $projectName= $request->input('projectName');
         $projectDescription = $request->input('projectDescription');
@@ -57,9 +90,8 @@ class ProjectsController extends Controller
         $startDate = $request->input('startDate');
         $endDate = $request->input('endDate');
         $consumables = $request->boolean('consumables');
-
         if(DB::table('projects')->where('id', $id)->exists() == true){
-            DB::table('projects')->where('id',$id)->update([
+           DB::table('projects')->where('id',$id)->update([
             'projectName' => $projectName,
             'projectDescription' =>$projectDescription,
             'company'=>$company,
@@ -91,6 +123,18 @@ class ProjectsController extends Controller
     }
 //Create Entry - guardar form
     public function storeDataEntry(Request $request){
+        $validator = Validator::make($request->all(), [
+            'entryType' => 'required|max:191',
+            'entryDescription' => 'required',
+            'entryStartDate' => 'date',
+            'entryEndDate' => 'date',
+        ]);
+
+        if ($validator->fails()) {
+                    return redirect('/dataentry/create/{id}')
+                                ->withErrors($validator)
+                                ->withInput();
+                }
     if($request->hasFile('entryFile')){
     $fileNameWithExt = $request->file('entryFile')->getClientOriginalName();
     $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -101,32 +145,15 @@ class ProjectsController extends Controller
                                                   .$request->input('id').'/'
                                                   .$request->input('entryType'),$finalFileName);
     }
-    else{
-        $finalFileName = "No_file_uploaded";
-    }
-
+    else{ $finalFileName = "No_file_uploaded"; }
     $sortPos = $request->input('entryType');
-    if($sortPos == "CompraMat"){
-        $sortVar = "0";
-    }
-    else if($sortPos == "Protos"){
-        $sortVar = "1";
-    }
-    else if($sortPos == "Avance25"){
-        $sortVar = "2";
-    }
-    else if($sortPos == "Avance50"){
-        $sortVar = "3";
-    }
-    else if($sortPos == "Avance75"){
-        $sortVar = "4";
-    }
-    else if($sortPos == "Final"){
-        $sortVar = "5";
-    }
-
+    if($sortPos == "CompraMat"){ $sortVar = "0"; }
+    else if($sortPos == "Protos"){ $sortVar = "1"; }
+    else if($sortPos == "Avance25"){ $sortVar = "2"; }
+    else if($sortPos == "Avance50"){ $sortVar = "3"; }
+    else if($sortPos == "Avance75"){ $sortVar = "4"; }
+    else if($sortPos == "Final"){ $sortVar = "5"; }
     $dataEntry = New DataEntries;
-
     $dataEntry -> projects_Id= $request->input('id');
     $dataEntry -> entryType = $request->input('entryType');
     $dataEntry -> entryDescription = $request->input('entryDescription');
@@ -134,7 +161,6 @@ class ProjectsController extends Controller
     $dataEntry -> entryStartDate = $request->input('entryStartDate');
     $dataEntry -> entryEndDate = $request->input('entryEndDate');
     $dataEntry -> sortPos = $sortVar;
-
     $dataEntry->save();
     return redirect('/projects/'.$request->input('id'))->with('msg', 'Actividad agregada correctamente');
     }
@@ -145,6 +171,19 @@ class ProjectsController extends Controller
     }
 //Edit Entry - guardar form
     public function updateEntry(Request $request){
+        $validator = Validator::make($request->all(), [
+            'entryType' => 'required|max:191',
+            'entryDescription' => 'required',
+            'entryStartDate' => 'date',
+            'entryEndDate' => 'date',
+        ]);
+
+        if ($validator->fails()) {
+                    return redirect('/dataentry/create/{id}')
+                                ->withErrors($validator)
+                                ->withInput();
+                }
+
     if($request->hasFile('entryFile')){
     $fileNameWithExt = $request->file('entryFile')->getClientOriginalName();
     $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);

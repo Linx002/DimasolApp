@@ -52,18 +52,17 @@
         <label for="entryFile">Archivo: </label>
         <input class="form-control" type="file" name="entryFile" id="entryFile" value="{{ $entry->entryFile }}" readonly/>
         <div class="form-row">
-            <div class="col-md-4">
+            <div class="col-md-6">
             <label for="entryStartDate">Fecha de inicio de actividad: </label>
             <input class="form-control" type="date" name="entryStartDate" id="entryStartDate" value="{{ $entry->entryStartDate }}" readonly/>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
             <label for="entryEndDate">Fecha de finalizacion de actividad: </label>
             <input class="form-control" type="date" name="entryEndDate" id="entryEndDate" value="{{ $entry->entryEndDate }}" readonly/>
             </div>
         </div>
         <div class="dimasol-padding-16">
             <button type="submit" class="dimasol-button button-radius btn-danger btn">Eliminar actividad</button>
-            <button type="reset" class="dimasol-button button-radius btn-warning btn">Reset</button>
             <a href="/projects/{{ $entry->projects_Id}}" class="dimasol-button button-radius btn btn-info">Regresar a proyecto</a>
         </div>
 </form>

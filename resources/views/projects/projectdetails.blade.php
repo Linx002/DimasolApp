@@ -22,19 +22,20 @@
             <li class="list-group-item"><h5>Fecha de finalización: </h5>{{$projects->endDate}}</li>
         </ul><br>
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/projects/">Regreso al catálogo</a></li>
-                @if (Route::has('login'))
+             @if (Route::has('login'))
                 @auth
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/projects/">Regreso al catálogo</a></li>
                 <li class="breadcrumb-item"><a href="/projects/edit/{{$projects->id}}">Editar</a></li>
                 <li class="breadcrumb-item"><a href="/projects/delete/{{$projects->id}}">Borrar</a></li>
                 <li class="breadcrumb-item"><a href="/dataentry/create/{{ $projects->id }}">Agregar actividades</a> </li>
-                @endauth
-                @endif
-            </ol> </nav>
+            </ol>
+            @endauth
+            @endif
+        </nav>
     </div>
     <div class="dimasol-container dimasol-half">
-        {{-- Mitad derecha - timeline --}}
+        {{-- Mitad derecha - data entries --}}
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><h5>Inicio de Proyecto: </h5>{{$projects->startDate}}</li>
             {{-- entradas de datos --}}
@@ -59,7 +60,7 @@
                 @if ($entries->entryFile == "No_file_uploaded")
                 <small>Esta actividad no contiene archivos.</small>
                 @else
-                <a class="badge badge-info badge-pill" href="/public/{{$entries->entryType}}/{{$entries->entryFile}}">Ver archivo adjunto</a>
+                <a class="badge badge-info badge-pill" href="/public/{{$entries->id}}/{{$entries->entryType}}/{{$entries->entryFile}}">Ver archivo adjunto</a>
                 @endif
                 </div>
             </div>
